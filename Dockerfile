@@ -79,6 +79,6 @@ RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot" && \
     fix-permissions /home/$NB_USER
 
 # Install nbgitpuller
-RUN pip install nbgitpuller psycopg2
+RUN pip install nbgitpuller psycopg2 cx_Oracle
 
 USER $NB_UID
