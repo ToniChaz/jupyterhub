@@ -1,14 +1,63 @@
 # Jupyter Notebook Scientific Python Stack
 
-Custom jupyterhub image for data manipulation. Based on jupyter/scipy-notebook 
+Custom jupyterhub image for data manipulation. Based on jupyter/scipy-notebook.
 
-## Libs
+## Libs conda
 * Everything in jupyter/minimal-notebook and its ancestor images
-* pandas, numexpr, matplotlib, scipy, seaborn, scikit-learn, scikit-image, sympy, cython, patsy, statsmodel, cloudpickle, dill, numba, bokeh, sqlalchemy, hdf5, vincent, beautifulsoup, protobuf, and xlrd packages
-* ipywidgets for interactive visualizations in Python notebooks
-* Facets for visualizing machine learning datasets
+* beautifulsoup4
+* conda-forge::blas=*=openblas
+* bokeh
+* cloudpickle
+* cython
+* dask
+* dill
+* h5py
+* hdf5
+* ipywidgets
+* matplotlib-base
+* numba
+* numexpr
+* pandas
+* patsy
+* protobuf
+* scikit-image
+* scikit-learn
+* scipy
+* seaborn
+* sqlalchemy
+* statsmodels
+* sympy
+* vincent
+* xlrd
+* jupytext
+* jupyterlab-git
+* icalendar
+* scikit-learn
+* plotly
+* xhtml2pdf
+* plotly 
+* chart-studio 
+* plotly-orca
 
-## Extras
+## Libs SO
+* unzip
+* wget
+* curl
+* ssh
+* iputils-ping
+* ffmpeg
+* libpq-dev
+* python-dev
+* libaio1
+* libaio-dev
+* libxtst6
+* libgconf-2-4
+* xvfb
 
+## libs pip
 * nbgitpuller 
 * psycopg2
+* elasticsearch-dsl 
+* unidecode 
+* nltk 
+* wordcloud
