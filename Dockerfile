@@ -58,32 +58,25 @@ RUN conda install --quiet --yes \
     'jupyterlab-git' \
     'icalendar' \
     'scikit-learn' \
-    'plotly' \
     'xhtml2pdf'
 
 RUN conda install --quiet --yes -c plotly chart-studio plotly-orca
 
 RUN conda clean --all -f -y && \
-     # Activate ipywidgets extension in the environment that runs the notebook server
-     jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
-     # Also activate ipywidgets extension for JupyterLab
-     # Check this URL for most recent compatibilities
-     # https://github.com/jupyter-widgets/ipywidgets/tree/master/packages/jupyterlab-manager
-     jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build && \
-     jupyter labextension install jupyterlab_bokeh --no-build && \
-     # Jupyter widgets extension
-     jupyter labextension install @jupyter-widgets/jupyterlab-manager@1.0 --no-build && \
-     # jupyterlab renderer support
-     jupyter labextension install jupyterlab-plotly@1.2.0 --no-build && \
-     # FigureWidget support
-     jupyter labextension install plotlywidget@1.2.0 --no-build && \
-     jupyter lab build --dev-build=False && \
-     npm cache clean --force && \
-     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
-     rm -rf /home/$NB_USER/.cache/yarn && \
-     rm -rf /home/$NB_USER/.node-gyp && \
-     fix-permissions $CONDA_DIR && \
-     fix-permissions /home/$NB_USER
+    # Activate ipywidgets extension in the environment that runs the notebook server
+    jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
+    # Also activate ipywidgets extension for JupyterLab
+    # Check this URL for most recent compatibilities
+    # https://github.com/jupyter-widgets/ipywidgets/tree/master/packages/jupyterlab-manager
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager@^1.0.1 --no-build && \
+    jupyter labextension install jupyterlab_bokeh@1.0.0 --no-build && \
+    jupyter lab build && \
+    npm cache clean --force && \
+    rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
+    rm -rf /home/$NB_USER/.cache/yarn && \
+    rm -rf /home/$NB_USER/.node-gyp && \
+    fix-permissions $CONDA_DIR && \
+    fix-permissions /home/$NB_USER
 
 RUN unset NODE_OPTIONS
 
@@ -102,5 +95,8 @@ ENV XDG_CACHE_HOME /home/$NB_USER/.cache/
 RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot" && \
     fix-permissions /home/$NB_USER
 
-# Install nbgitpuller
+# Install nbgitpuller psycopg2 elasticsearch-dsl unidecode nltk wordcloud
 RUN pip install nbgitpuller psycopg2 elasticsearch-dsl unidecode nltk wordcloud
+
+USER $NB_UID
+
